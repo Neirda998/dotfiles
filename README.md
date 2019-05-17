@@ -1,14 +1,14 @@
-## Dotfiles
+# Dotfiles
 Personal dotfiles and Linux stuff in general
 
-#i3/config
+## i3/config
 Add a workspace bar for git projects
 
-#bashrc
+## bashrc
 Add aliases for rails projects
 
-#vimrc
+## vimrc
 Add various changes on vim layout
 
-#commands
+## commands
 Documentation for several commands used
