@@ -18,3 +18,4 @@ Some help
 
 ### Redaction.md
 Here is some help to write a [.md document](https://guides.github.com/features/mastering-markdown/)
+And here is [more](https://help.github.com/en/articles/basic-writing-and-formatting-syntax)
