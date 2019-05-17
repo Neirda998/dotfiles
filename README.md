@@ -12,3 +12,9 @@ Add various changes on vim layout
 
 ## commands
 Documentation for several commands used
+
+## Help
+Some help
+
+### Redaction.md
+Here is some help to write a [.md document](https://guides.github.com/features/mastering-markdown/)

@@ -1,5 +1,5 @@
 # List of commands and documentation
 
-##Linux commands
+## Linux commands
 
-##Vim commands
+## Vim commands
