@@ -4,23 +4,23 @@
 ### Word count `wc`
 After a listing command (cat included), can add `| wc` to list a word cound\
 Return 3 numbers that can be passed as option for command (can pass various).\
-`cat [FILE] | wc`
-return `[-l for LINES] [-w for WORDS] [-c CHARACTERS]`
+`cat [FILE] | wc`\
+return `[-l for LINES] [-w for WORDS] [-c CHARACTERS]`\
 
 ## Grep commands
-`grep [OPTIONS] [SEARCH] [FILES]`
+`grep [OPTIONS] [SEARCH] [FILES]`\
 
 search in a git file:\
-`git grep [SEARCH]`
+`git grep [SEARCH]`\
 print line:\
-`grep -n [SEARCH]`
+`grep -n [SEARCH]`\
 print lines below match:\
 `grep -A [NUM] [SEARCH]`
 
 ## Ack commands
-`ack [OPTIONS] [SEARCH] [FILES]`
+`ack [OPTIONS] [SEARCH] [FILES]`\
 
 print lines below match:\
-`ack -A [NUM] [SEARCH]`
+`ack -A [NUM] [SEARCH]`\
 
 ## Vim commands
