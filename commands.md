@@ -2,8 +2,8 @@
 
 ## Linux commands
 ### Word count `wc`
-After a listing command (cat included), can add `| wc` to list a word cound\
-Return 3 numbers that can be passed as option for command (can pass various).\
+After a listing command (ls, cat, ack, grep, etc), can add `| wc` to list a word cound\
+Return 3 numbers that can be passed as option for command (can pass various, but will always be print in the same order).\
 `cat [FILE] | wc`\
 return `[-l for LINES] [-w for WORDS] [-c CHARACTERS]`
 
