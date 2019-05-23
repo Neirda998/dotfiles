@@ -1,6 +1,13 @@
 # List of commands and documentation
 
 ## Linux commands
+### Reload sources
+Reload bash:\
+`source ~/.bashrc` or `. ~/.bashrc`
+
+Reload i3/config:\
+$mod+shift+c
+
 ### Word count `wc`
 After a listing command (ls, cat, ack, grep, etc), can add `| wc` to list a word cound\
 Return 3 numbers that can be passed as option for command (can pass various, but will always be print in the same order).\
