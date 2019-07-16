@@ -34,5 +34,5 @@ map <C-Right> <C-W><Right>
 map <C-Up> <C-W><Up>
 map <C-Down> <C-W><Down>
 
-" Tabs mapping
+" Multitabs mapping
 map <C-a> gt
