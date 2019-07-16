@@ -8,6 +8,7 @@ set number
 set spell spelllang=en_gb
 
 set expandtab
+set autoindent
 set tabstop=2
 set incsearch
 set hlsearch
