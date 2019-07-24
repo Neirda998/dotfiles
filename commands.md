@@ -41,3 +41,6 @@ print lines before and below match:\
 default is 2
 
 ## Vim commands
+### Substitution
+`:%s/FindMe/ReplaceME/g`\
+Add `c` at the end for confirmation
