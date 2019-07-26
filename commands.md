@@ -42,5 +42,5 @@ default is 2
 
 ## Vim commands
 ### Substitution
-`:%s/FindMe/ReplaceME/g`\
+`:%s/txt/new_txt/g`\
 Add `c` at the end for confirmation
