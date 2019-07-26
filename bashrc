@@ -2,10 +2,14 @@
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+# Aliases
+alias cl='clear'
+
 # Git aliases
 alias gst='git status'
-alias gau="git add -u"
+alias gau='git add -u'
 alias gdff='git diff'
+alias gsw='git show'
 alias gcm='git commit -m'
 alias gca='git commit --amend --no-edit'
 alias gcae='git commit --amend'
@@ -14,6 +18,8 @@ alias gpso='git push origin'
 alias gpl='git pull'
 alias grb='git rebase'
 alias grbm='git rebase master'
+alias grbc='git rebase --continue'
+alias glg='git log'
 
 alias gco='git checkout'
 alias gcom='git checkout master'
