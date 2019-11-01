@@ -177,3 +177,8 @@ bar {
 # Please remove the following exec line:
 #######################################################################
 exec i3-config-wizard
+
+# Set resolution of screen
+# very usefull on VMs
+exec --no-startup-id xrandr --output Virtual1 --mode 1680x1050
+exec --no-startup-id nitrogen --restore
