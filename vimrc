@@ -1,32 +1,48 @@
+" ----- Plugins
 " Pathogen used for vim plugins
 execute pathogen#infect()
 
+autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
+
+" CtrlP                                                                         
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.git|node_modules|dist|coverage|obj)$',
+  \ 'file': '\v\.(o)$',
+  \ }
+
+" airline
+let g:airline#extensions#branch#enabled = 1
+let g:airline_section_y = 'BN: %{bufnr("%")}'
+let g:airline_theme='wombat'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+
+" gruvbox
+colorscheme gruvbox
+set background=dark    " Setting dark mode
+let g:gruvbox_contrast_dark = 'hard'
+
+let g:gruvbox_sign_column = 'bg0_h'
+
+" ----- Basics
 " Set numbers on left side
 set number
 
-" Spell checking
-set spell spelllang=en_gb
-
 set expandtab
 set autoindent
-set tabstop=2
+set tabstop=4
 set incsearch
 set hlsearch
 
 " Highlight column 80
 set colorcolumn=80
-highlight ColorColumn ctermbg=0
-
-autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
 
 set laststatus=2
 set splitright
-
-" CtrlP ignore
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.git|node_modules|dist|coverage|obj)$',
-  \ 'file': '\v\.(o)$',
-  \ }
 
 " Multiscreen mapping
 map <C-Left> <C-W><Left>
