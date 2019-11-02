@@ -1,10 +1,13 @@
 " ----- Plugins
 " Pathogen used for vim plugins
 execute pathogen#infect()
+" filetype plugin indent on
+syntax on
 
 autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
 
-" CtrlP                                                                         
+" CtrlP
+set runtimepath^=~/afs/.confs/vim/bundle/ctrlp.vim
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.git|node_modules|dist|coverage|obj)$',
   \ 'file': '\v\.(o)$',
@@ -37,6 +40,8 @@ set autoindent
 set tabstop=4
 set incsearch
 set hlsearch
+
+set list listchars=tab:▸·,trail:·
 
 " Highlight column 80
 set colorcolumn=80
