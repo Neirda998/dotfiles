@@ -1,6 +1,10 @@
-# ottsm osm backend
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# Prompt display
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="[\W]\[\033[33m\]\$(parse_git_branch)\[\033[00m\]$ "
+# Old basic prompt
+# PS1='[\u@\h \W]\$ '
 
 # Aliases
 alias cl='clear'
