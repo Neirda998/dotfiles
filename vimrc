@@ -31,6 +31,11 @@ let g:gruvbox_contrast_dark = 'hard'
 
 let g:gruvbox_sign_column = 'bg0_h'
 
+" ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+
 " ----- Basics
 " Set numbers on left side
 set number
