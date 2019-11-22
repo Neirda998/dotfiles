@@ -1,7 +1,6 @@
 " ----- Plugins
 " Pathogen used for vim plugins
 execute pathogen#infect()
-" filetype plugin indent on
 syntax on
 
 autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
@@ -25,6 +24,9 @@ let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
 
 " airline remove unicode symbols
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.crypt = ''
@@ -51,17 +53,22 @@ let g:gruvbox_sign_column = 'bg0_h'
 " ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 
 " ----- Basics
+" replace delay when press escape                                               
+set ttimeoutlen=10
+
 " Set numbers on left side
 set number
 
+filetype plugin indent on
+set tabstop=8
+set shiftwidth=4
+set softtabstop=-1 " same value as shiftwidth
 set expandtab
+set smarttab
 set autoindent
-set tabstop=4
 set incsearch
-set hlsearch
 
 set list listchars=tab:▸·,trail:·
 
@@ -79,3 +86,8 @@ map <C-Down> <C-W><Down>
 
 " Multitabs mapping
 map <C-a> gt
+
+" Switch between buffers
+nnoremap <C-z> :bp<CR>
+nnoremap <C-x> :bn<CR>
+nnoremap <C-c> :bp\|bd #<CR>
