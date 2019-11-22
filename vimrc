@@ -55,7 +55,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 
 " ----- Basics
-" replace delay when press escape                                               
+" replace delay when press escape
 set ttimeoutlen=10
 
 " Set numbers on left side

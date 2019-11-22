@@ -10,6 +10,10 @@ Add aliases for rails projects
 ## vimrc
 Add various changes on vim layout
 
+### UltiSnips/
+Contains all the snippets that I use.
+Directory should be copied in `.vim/`
+
 ## commands
 Documentation for several commands used
 
