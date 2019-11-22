@@ -1,0 +1,25 @@
+snippet header "Define header" b
+#ifndef $1
+# define $1
+
+#endif /* ! $1 */
+endsnippet
+
+snippet incl "Include" b
+#include <$1>
+endsnippet
+
+snippet fdox "File doxygene layout" b
+/**
+** \file
+** Description
+*/
+endsnippet
+
+snippet dox "Simple doxygene layout" b
+/**
+** Description
+** @param
+** @return Returns
+*/
+endsnippet
