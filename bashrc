@@ -25,6 +25,7 @@ alias ls='ls --color=auto'
 
 # Aliases
 alias cl='clear'
+alias l='ls -l'
 alias la='ls -la'
 # interesting stuff working on arch
 alias lp='ls Makefile TODO README src src/include tests'
