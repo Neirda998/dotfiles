@@ -1,21 +1,30 @@
 # Dotfiles
-Personal dotfiles and Linux stuff in general
+Personal dotfiles and Linux stuff in general.
 
-## i3/config
-Add a workspace bar for git projects
+## i3wm: i3/config
+Add custom config for i3wm.
 
 ## bashrc
-Add aliases for rails projects
+Add a custom PS prompt.
+Add a buch of aliases such as git aliases and rails aliases.
 
 ## vimrc
-Add various changes on vim layout
+Add various changes on vim
 
-### UltiSnips/
+### Plugins
+* Pathogen for plugin managment
+* CtrlP for dynamic file search
+* airline for vim status bar
+* airline-themes for airline themes
+* gruvbox for vim them
+* UltiSnips for vim snippets
+
+#### UltiSnips/
 Contains all the snippets that I use.
 Directory should be copied in `.vim/`
 
 ## commands
-Documentation for several commands used
+Documentation for several commands used.
 
 ## Help
 Some help
