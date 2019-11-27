@@ -20,33 +20,33 @@ snippet hdef "Define header" b
 #endif /* $1 */
 endsnippet
 
-snippet main "Simple main" b
+snippet main "Simple C main" b
 int main(int argc, char *argv[])
 {
     return 0;
 }
 endsnippet
 
-snippet void "Void main" b
+snippet void "Void C main" b
 int main(void)
 {
     return 0;
 }
 endsnippet
 
-snippet func "Simple function" b
+snippet func "Simple C function" b
 ${2:void} ${1:name}($3){
     ${4}
 }
 endsnippet
 
-snippet for "For loop" b
+snippet for "C For loop" b
 for (${2:int} ${1:i} = 0; $1 < ${3:size} ; ++$1)
 {
 }
 endsnippet
 
-snippet while "While loop" b
+snippet while "C While loop" b
 int $1 = 0
 while ($1 < )
 {
