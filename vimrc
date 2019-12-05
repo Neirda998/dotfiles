@@ -5,6 +5,9 @@ syntax on
 
 autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
 
+" Supertab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
 " CtrlP
 set runtimepath^=~/afs/.confs/vim/bundle/ctrlp.vim
 let g:ctrlp_custom_ignore = {
@@ -71,6 +74,10 @@ set autoindent
 set incsearch
 
 set list listchars=tab:▸·,trail:·
+
+" Highlight syntax
+" rafi files
+au BufNewFile,BufRead /*.rasi setf css
 
 " Highlight column 80
 set colorcolumn=80
