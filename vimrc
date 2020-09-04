@@ -1,11 +1,16 @@
-" ----- Plugins
-" Pathogen used for vim plugins
+" ----- Plug-----
+call plug#begin('~/.vim/plugged')
+" Markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+call plug#end()
+
+" ----- Pathogen -----
 execute pathogen#infect()
 syntax on
 
 autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
 
-" Supertab
+" ----- Supertab -----
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " CtrlP
@@ -15,10 +20,10 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(o)$',
   \ }
 
-" airline
+" ----- Airline -----
+" download fugitive, so git branch is available on airline display
 let g:airline#extensions#branch#enabled = 1
 let g:airline_section_y = 'BN: %{bufnr("%")}'
-let g:airline_theme='wombat'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
@@ -46,18 +51,26 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.dirty=''
 
-" gruvbox
-colorscheme gruvbox
-set background=dark    " Setting dark mode
-let g:gruvbox_contrast_dark = 'hard'
+" ----- Colorscheme -----
+" gruvbox colorscheme + airline
+" colorscheme gruvbox
+" set background=dark    " Setting dark mode
+" let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_sign_column = 'bg0_h'
+" let g:airline_theme='wombat'
 
-let g:gruvbox_sign_column = 'bg0_h'
+" edge colorscheme + airline
+set background=dark
+let g:edge_style = 'neon'
+colorscheme edge
+let g:airline_theme='edge'
 
+" ----- Snippets -----
 " ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 
-" ----- Basics
+" ----- Basics -----
 " replace delay when press escape
 set ttimeoutlen=10
 
