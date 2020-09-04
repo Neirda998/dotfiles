@@ -45,7 +45,8 @@ COLOR_RESET="\033[00m"
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-export PS1="\[$COLOR_WHITE\][\W]\[$COLOR_CYAN\]\$(parse_git_branch)\[$COLOR_LIGHT_GREY\]$ "
+# export PS1="\[$COLOR_WHITE\][\W]\[$COLOR_CYAN\]\$(parse_git_branch)\[$COLOR_LIGHT_GREY\]$ "
+export PS1="\[$COLOR_WHITE\][\W]\[$COLOR_LIGHT_GREY\]\$(parse_git_branch)\[$COLOR_RESET\]$ "
 # Old basic prompt
 # PS1='[\u@\h \W]\$ '
 
@@ -55,10 +56,18 @@ alias ls='ls --color=auto'
 alias cl='clear'
 alias l='ls -l'
 alias la='ls -la'
+alias diff='diff --color=auto'
+
+alias cp="cp -i"                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
 # interesting stuff working on arch
 alias lp='ls Makefile TODO README src src/include tests'
 alias grepc='grep --color=auto -nr'
 alias i3lock='i3lock --image=/home/adrien.josse/afs/Pics/PROJEEET.PNG'
+
+# pimp my neofetch
+# alias turbo='neofetch --colors 6 15 14 5 7 15 --w3m ~/Pictures/Luchador-small.png --crop_mode normal --loop'
 
 # Git aliases
 alias gcl='git clone'
@@ -77,6 +86,7 @@ alias gpsm='git push origin master'
 
 alias gtag='git tag -f -m "" -a'
 alias gpstag='git push --tags'
+alias yeet='git push; git push --tags'
 
 alias gpl='git pull'
 alias grb='git rebase'
@@ -94,11 +104,14 @@ alias gco-='git checkout -'
 alias gbr='git branch'
 
 alias gmg='git merge'
+alias gsa='ssh-add'
 # More here: https://dev.to/robertcoopercode/using-aliases-to-speed-up-your-git-workflow-2f5a
 # And here: https://gist.github.com/sdeering/8437725
 
-# SSH alias for git
-alias gsa='ssh-add'
+# EPITA gcc
+# alias gccW='gcc -Wall -Wextra -Werror -std=c99 -pedantic'
+# alias g++W='g++ -Wall -Wextra -Werror -pedantic -std=c++17'
+# alias g++2a='g++ -Wall -Wextra -Werror -pedantic -std=c++2a'
 
 # Aliases for rails projects
 alias rake='bundle exec rake'
