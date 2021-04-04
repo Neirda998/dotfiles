@@ -1,0 +1,103 @@
+Start testing: Dec 08 22:45 CET
+----------------------------------------------------------
+1/6 Testing: input_test
+1/6 Test: input_test
+Command: "/home/wall/epita/adrien.josse-42sh/build/tests/input/input_test"
+Directory: /home/wall/epita/adrien.josse-42sh/build
+"input_test" start time: Dec 08 22:45 CET
+Output:
+----------------------------------------------------------
+[====] Synthesis: Tested: 9 | Passing: 9 | Failing: 0 | Crashing: 0 
+<end of output>
+Test time =   0.30 sec
+----------------------------------------------------------
+Test Passed.
+"input_test" end time: Dec 08 22:45 CET
+"input_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/6 Testing: lexer_test
+2/6 Test: lexer_test
+Command: "/home/wall/epita/adrien.josse-42sh/build/tests/lexer/lexer_test"
+Directory: /home/wall/epita/adrien.josse-42sh/build
+"lexer_test" start time: Dec 08 22:45 CET
+Output:
+----------------------------------------------------------
+7
+[====] Synthesis: Tested: 35 | Passing: 35 | Failing: 0 | Crashing: 0 
+<end of output>
+Test time =   1.11 sec
+----------------------------------------------------------
+Test Passed.
+"lexer_test" end time: Dec 08 22:45 CET
+"lexer_test" time elapsed: 00:00:01
+----------------------------------------------------------
+
+3/6 Testing: parser_test
+3/6 Test: parser_test
+Command: "/home/wall/epita/adrien.josse-42sh/build/tests/parser/parser_test"
+Directory: /home/wall/epita/adrien.josse-42sh/build
+"parser_test" start time: Dec 08 22:45 CET
+Output:
+----------------------------------------------------------
+[====] Synthesis: Tested: 117 | Passing: 117 | Failing: 0 | Crashing: 0 
+<end of output>
+Test time =   3.73 sec
+----------------------------------------------------------
+Test Passed.
+"parser_test" end time: Dec 08 22:45 CET
+"parser_test" time elapsed: 00:00:03
+----------------------------------------------------------
+
+4/6 Testing: expand_test
+4/6 Test: expand_test
+Command: "/home/wall/epita/adrien.josse-42sh/build/tests/expand/expand_test"
+Directory: /home/wall/epita/adrien.josse-42sh/build
+"expand_test" start time: Dec 08 22:45 CET
+Output:
+----------------------------------------------------------
+[====] Synthesis: Tested: 12 | Passing: 12 | Failing: 0 | Crashing: 0 
+<end of output>
+Test time =   0.44 sec
+----------------------------------------------------------
+Test Passed.
+"expand_test" end time: Dec 08 22:45 CET
+"expand_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/6 Testing: exec_test
+5/6 Test: exec_test
+Command: "/home/wall/epita/adrien.josse-42sh/build/tests/exec/exec_test"
+Directory: /home/wall/epita/adrien.josse-42sh/build
+"exec_test" start time: Dec 08 22:45 CET
+Output:
+----------------------------------------------------------
+[====] Synthesis: Tested: 3 | Passing: 3 | Failing: 0 | Crashing: 0 
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"exec_test" end time: Dec 08 22:45 CET
+"exec_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/6 Testing: test_suite
+6/6 Test: test_suite
+Command: "/usr/bin/python3" "/home/wall/epita/adrien.josse-42sh/tests/python/test_suite.py" "./42sh"
+Directory: /home/wall/epita/adrien.josse-42sh/build
+"test_suite" start time: Dec 08 22:45 CET
+Output:
+----------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/wall/epita/adrien.josse-42sh/tests/python/test_suite.py", line 4, in <module>
+    from termcolor import colored
+ModuleNotFoundError: No module named 'termcolor'
+<end of output>
+Test time =   0.12 sec
+----------------------------------------------------------
+Test Failed.
+"test_suite" end time: Dec 08 22:45 CET
+"test_suite" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Dec 08 22:45 CET

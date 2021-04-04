@@ -1,0 +1,2 @@
+/usr/bin/ar qc libexec.a  CMakeFiles/exec.dir/exec_case.c.o CMakeFiles/exec.dir/exec_command.c.o CMakeFiles/exec.dir/exec_compound_list.c.o CMakeFiles/exec.dir/exec_funcdec.c.o CMakeFiles/exec.dir/exec_if.c.o CMakeFiles/exec.dir/exec_input.c.o CMakeFiles/exec.dir/exec_loops.c.o CMakeFiles/exec.dir/exec_redirection.c.o CMakeFiles/exec.dir/exec_redirection_bis.c.o CMakeFiles/exec.dir/exec_simple_command.c.o CMakeFiles/exec.dir/main_utils.c.o
+/usr/bin/ranlib libexec.a

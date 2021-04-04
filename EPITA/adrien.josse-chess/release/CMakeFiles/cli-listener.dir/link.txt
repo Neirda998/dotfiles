@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -Wall -Werror -Wextra -pedantic -pthread -O3 -DNDEBUG -O3  -shared -Wl,-soname,libcli-listener.so -o libcli-listener.so CMakeFiles/cli-listener.dir/src/listener/cli-listener.cc.o CMakeFiles/cli-listener.dir/src/chess_engine/board/utils.cc.o CMakeFiles/cli-listener.dir/src/utils/logger.cc.o 

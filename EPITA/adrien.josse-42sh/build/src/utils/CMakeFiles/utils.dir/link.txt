@@ -1,0 +1,2 @@
+/usr/bin/ar qc libutils.a  CMakeFiles/utils.dir/memory.c.o CMakeFiles/utils.dir/fd_utils.c.o CMakeFiles/utils.dir/xstring.c.o
+/usr/bin/ranlib libutils.a

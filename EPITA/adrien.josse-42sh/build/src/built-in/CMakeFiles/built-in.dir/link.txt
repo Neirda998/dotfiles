@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbuilt-in.a  CMakeFiles/built-in.dir/alias.c.o CMakeFiles/built-in.dir/break.c.o CMakeFiles/built-in.dir/built_in_alias.c.o CMakeFiles/built-in.dir/built_in.c.o CMakeFiles/built-in.dir/cd.c.o CMakeFiles/built-in.dir/continue.c.o CMakeFiles/built-in.dir/echo.c.o CMakeFiles/built-in.dir/exit.c.o CMakeFiles/built-in.dir/export.c.o CMakeFiles/built-in.dir/set.c.o CMakeFiles/built-in.dir/source.c.o
+/usr/bin/ranlib libbuilt-in.a

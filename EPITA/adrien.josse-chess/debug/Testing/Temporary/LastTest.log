@@ -1,0 +1,210 @@
+Start testing: May 22 19:26 BST
+----------------------------------------------------------
+1/1 Testing: unit_test
+1/1 Test: unit_test
+Command: "/home/wall/epita/adrien.josse-chess/debug/tests/unit_test"
+Directory: /home/wall/epita/adrien.josse-chess/debug
+"unit_test" start time: May 22 19:26 BST
+Output:
+----------------------------------------------------------
+[0;32m[==========] [mRunning 69 tests from 12 test cases.
+[0;32m[----------] [mGlobal test environment set-up.
+[0;32m[----------] [m7 tests from bitboard
+[0;32m[ RUN      ] [mbitboard.default_constructor
+[0;32m[       OK ] [mbitboard.default_constructor (1 ms)
+[0;32m[ RUN      ] [mbitboard.single_bitboard_white
+[0;32m[       OK ] [mbitboard.single_bitboard_white (0 ms)
+[0;32m[ RUN      ] [mbitboard.single_bitboard_black
+[0;32m[       OK ] [mbitboard.single_bitboard_black (0 ms)
+[0;32m[ RUN      ] [mbitboard.split_boards
+[0;32m[       OK ] [mbitboard.split_boards (0 ms)
+[0;32m[ RUN      ] [mbitboard.fen_constructor
+[0;32m[       OK ] [mbitboard.fen_constructor (0 ms)
+[0;32m[ RUN      ] [mbitboard.fen_constructor_rook
+[0;32m[       OK ] [mbitboard.fen_constructor_rook (0 ms)
+[0;32m[ RUN      ] [mbitboard.fen_constructor_full_board
+[0;32m[       OK ] [mbitboard.fen_constructor_full_board (0 ms)
+[0;32m[----------] [m7 tests from bitboard (1 ms total)
+
+[0;32m[----------] [m2 tests from chessboard
+[0;32m[ RUN      ] [mchessboard.empty_fen_object_constructor
+[0;32m[       OK ] [mchessboard.empty_fen_object_constructor (1 ms)
+[0;32m[ RUN      ] [mchessboard.fen_object_constructor_castling_full_pawn
+[0;32m[       OK ] [mchessboard.fen_object_constructor_castling_full_pawn (0 ms)
+[0;32m[----------] [m2 tests from chessboard (1 ms total)
+
+[0;32m[----------] [m16 tests from castling
+[0;32m[ RUN      ] [mcastling.king_move_wk
+[0;32m[       OK ] [mcastling.king_move_wk (1 ms)
+[0;32m[ RUN      ] [mcastling.king_move_wq
+[0;32m[       OK ] [mcastling.king_move_wq (1 ms)
+[0;32m[ RUN      ] [mcastling.king_move_bk
+[0;32m[       OK ] [mcastling.king_move_bk (1 ms)
+[0;32m[ RUN      ] [mcastling.king_move_bq
+[0;32m[       OK ] [mcastling.king_move_bq (1 ms)
+[0;32m[ RUN      ] [mcastling.rook_move_wk
+[0;32m[       OK ] [mcastling.rook_move_wk (0 ms)
+[0;32m[ RUN      ] [mcastling.rook_move_wq
+[0;32m[       OK ] [mcastling.rook_move_wq (0 ms)
+[0;32m[ RUN      ] [mcastling.rook_move_bk
+[0;32m[       OK ] [mcastling.rook_move_bk (1 ms)
+[0;32m[ RUN      ] [mcastling.rook_move_bq
+[0;32m[       OK ] [mcastling.rook_move_bq (1 ms)
+[0;32m[ RUN      ] [mcastling.rook_captured_wk
+[0;32m[       OK ] [mcastling.rook_captured_wk (2 ms)
+[0;32m[ RUN      ] [mcastling.rook_captured_wq
+[0;32m[       OK ] [mcastling.rook_captured_wq (2 ms)
+[0;32m[ RUN      ] [mcastling.rook_captured_bk
+[0;32m[       OK ] [mcastling.rook_captured_bk (1 ms)
+[0;32m[ RUN      ] [mcastling.rook_captured_bq
+[0;32m[       OK ] [mcastling.rook_captured_bq (0 ms)
+[0;32m[ RUN      ] [mcastling.bk_cannot_castle
+[0;32m[       OK ] [mcastling.bk_cannot_castle (1 ms)
+[0;32m[ RUN      ] [mcastling.bk_cannot_castle_2
+[0;32m[       OK ] [mcastling.bk_cannot_castle_2 (1 ms)
+[0;32m[ RUN      ] [mcastling.wk_cannot_castle
+[0;32m[       OK ] [mcastling.wk_cannot_castle (1 ms)
+[0;32m[ RUN      ] [mcastling.wk_cannot_castle_2
+[0;32m[       OK ] [mcastling.wk_cannot_castle_2 (0 ms)
+[0;32m[----------] [m16 tests from castling (15 ms total)
+
+[0;32m[----------] [m3 tests from eval
+[0;32m[ RUN      ] [meval.single_pawn
+[0;32m[       OK ] [meval.single_pawn (0 ms)
+[0;32m[ RUN      ] [meval.six_pieces
+[0;32m[       OK ] [meval.six_pieces (1 ms)
+[0;32m[ RUN      ] [meval.black_king
+[0;32m[       OK ] [meval.black_king (1 ms)
+[0;32m[----------] [m3 tests from eval (2 ms total)
+
+[0;32m[----------] [m7 tests from generate_legal_moves
+[0;32m[ RUN      ] [mgenerate_legal_moves.game_start
+[0;32m[       OK ] [mgenerate_legal_moves.game_start (0 ms)
+[0;32m[ RUN      ] [mgenerate_legal_moves.check_move
+[0;32m[       OK ] [mgenerate_legal_moves.check_move (1 ms)
+[0;32m[ RUN      ] [mgenerate_legal_moves.edwards_1
+[0;32m[       OK ] [mgenerate_legal_moves.edwards_1 (6 ms)
+[0;32m[ RUN      ] [mgenerate_legal_moves.myo_pin_passant
+[0;32m[       OK ] [mgenerate_legal_moves.myo_pin_passant (1 ms)
+[0;32m[ RUN      ] [mgenerate_legal_moves.king_crimson_castling
+[0;32m[       OK ] [mgenerate_legal_moves.king_crimson_castling (0 ms)
+[0;32m[ RUN      ] [mgenerate_legal_moves.queen_crimson_castling
+[0;32m[       OK ] [mgenerate_legal_moves.queen_crimson_castling (1 ms)
+[0;32m[ RUN      ] [mgenerate_legal_moves.next_level_strats
+[0;32m[       OK ] [mgenerate_legal_moves.next_level_strats (0 ms)
+[0;32m[----------] [m7 tests from generate_legal_moves (9 ms total)
+
+[0;32m[----------] [m2 tests from generate_legal_captures
+[0;32m[ RUN      ] [mgenerate_legal_captures.game_start
+[0;32m[       OK ] [mgenerate_legal_captures.game_start (0 ms)
+[0;32m[ RUN      ] [mgenerate_legal_captures.edwards_1
+[0;32m[       OK ] [mgenerate_legal_captures.edwards_1 (1 ms)
+[0;32m[----------] [m2 tests from generate_legal_captures (1 ms total)
+
+[0;32m[----------] [m9 tests from move_generation
+[0;32m[ RUN      ] [mmove_generation.single_white_pawn_moves
+[0;32m[       OK ] [mmove_generation.single_white_pawn_moves (0 ms)
+[0;32m[ RUN      ] [mmove_generation.multiple_black_pawn_moves
+[0;32m[       OK ] [mmove_generation.multiple_black_pawn_moves (0 ms)
+[0;32m[ RUN      ] [mmove_generation.white_king
+[0;32m[       OK ] [mmove_generation.white_king (0 ms)
+[0;32m[ RUN      ] [mmove_generation.black_king_castling
+[0;32m[       OK ] [mmove_generation.black_king_castling (0 ms)
+[0;32m[ RUN      ] [mmove_generation.white_queen
+[0;32m[       OK ] [mmove_generation.white_queen (0 ms)
+[0;32m[ RUN      ] [mmove_generation.black_queens
+[0;32m[       OK ] [mmove_generation.black_queens (0 ms)
+[0;32m[ RUN      ] [mmove_generation.white_knight
+[0;32m[       OK ] [mmove_generation.white_knight (0 ms)
+[0;32m[ RUN      ] [mmove_generation.dark_knights
+[0;32m[       OK ] [mmove_generation.dark_knights (0 ms)
+[0;32m[ RUN      ] [mmove_generation.half_chessboard_white_turn
+[0;32m[       OK ] [mmove_generation.half_chessboard_white_turn (0 ms)
+[0;32m[----------] [m9 tests from move_generation (0 ms total)
+
+[0;32m[----------] [m9 tests from check
+[0;32m[ RUN      ] [mcheck.pawn_threat_white
+[0;32m[       OK ] [mcheck.pawn_threat_white (0 ms)
+[0;32m[ RUN      ] [mcheck.pawn_no_threat_black
+[0;32m[       OK ] [mcheck.pawn_no_threat_black (0 ms)
+[0;32m[ RUN      ] [mcheck.knight_threat_white
+[0;32m[       OK ] [mcheck.knight_threat_white (0 ms)
+[0;32m[ RUN      ] [mcheck.queen_threat_black
+[0;32m[       OK ] [mcheck.queen_threat_black (0 ms)
+[0;32m[ RUN      ] [mcheck.queen_no_threat_black
+[0;32m[       OK ] [mcheck.queen_no_threat_black (1 ms)
+[0;32m[ RUN      ] [mcheck.check_white
+[0;32m[       OK ] [mcheck.check_white (0 ms)
+[0;32m[ RUN      ] [mcheck.checkmate_white
+[0;32m[       OK ] [mcheck.checkmate_white (0 ms)
+[0;32m[ RUN      ] [mcheck.simple_stalemate_white
+[0;32m[       OK ] [mcheck.simple_stalemate_white (0 ms)
+[0;32m[ RUN      ] [mcheck.middle_stalemate_white
+[0;32m[       OK ] [mcheck.middle_stalemate_white (0 ms)
+[0;32m[----------] [m9 tests from check (1 ms total)
+
+[0;32m[----------] [m6 tests from option_parser
+[0;32m[ RUN      ] [moption_parser.no_options
+[0;32m[       OK ] [moption_parser.no_options (0 ms)
+[0;32m[ RUN      ] [moption_parser.help
+Allowed options::
+  -h [ --help ]          show usage
+  --pgn arg              path to the PGN game file
+  -l [ --listeners ] arg list of paths to listener plugins
+  --perft arg            path to a perft file
+
+[0;32m[       OK ] [moption_parser.help (0 ms)
+[0;32m[ RUN      ] [moption_parser.pgn_file
+[0;32m[       OK ] [moption_parser.pgn_file (0 ms)
+[0;32m[ RUN      ] [moption_parser.perft_file
+[0;32m[       OK ] [moption_parser.perft_file (0 ms)
+[0;32m[ RUN      ] [moption_parser.listeners
+[0;32m[       OK ] [moption_parser.listeners (0 ms)
+[0;32m[ RUN      ] [moption_parser.wrong
+Invalid option
+Allowed options::
+  -h [ --help ]          show usage
+  --pgn arg              path to the PGN game file
+  -l [ --listeners ] arg list of paths to listener plugins
+  --perft arg            path to a perft file
+
+[0;32m[       OK ] [moption_parser.wrong (1 ms)
+[0;32m[----------] [m6 tests from option_parser (1 ms total)
+
+[0;32m[----------] [m2 tests from fen_object
+[0;32m[ RUN      ] [mfen_object.empty_board_1x1
+[0;32m[       OK ] [mfen_object.empty_board_1x1 (0 ms)
+[0;32m[ RUN      ] [mfen_object.filled_board_1x1
+[0;32m[       OK ] [mfen_object.filled_board_1x1 (0 ms)
+[0;32m[----------] [m2 tests from fen_object (0 ms total)
+
+[0;32m[----------] [m2 tests from fen_rank
+[0;32m[ RUN      ] [mfen_rank.empty_rank
+[0;32m[       OK ] [mfen_rank.empty_rank (0 ms)
+[0;32m[ RUN      ] [mfen_rank.some_pieces
+[0;32m[       OK ] [mfen_rank.some_pieces (0 ms)
+[0;32m[----------] [m2 tests from fen_rank (0 ms total)
+
+[0;32m[----------] [m4 tests from perft_parser
+[0;32m[ RUN      ] [mperft_parser.rank_empty_rank
+[0;32m[       OK ] [mperft_parser.rank_empty_rank (0 ms)
+[0;32m[ RUN      ] [mperft_parser.rank_some_pieces
+[0;32m[       OK ] [mperft_parser.rank_some_pieces (0 ms)
+[0;32m[ RUN      ] [mperft_parser.perft_short_line
+[0;32m[       OK ] [mperft_parser.perft_short_line (0 ms)
+[0;32m[ RUN      ] [mperft_parser.perft_short_line_en_passant
+[0;32m[       OK ] [mperft_parser.perft_short_line_en_passant (0 ms)
+[0;32m[----------] [m4 tests from perft_parser (0 ms total)
+
+[0;32m[----------] [mGlobal test environment tear-down
+[0;32m[==========] [m69 tests from 12 test cases ran. (31 ms total)
+[0;32m[  PASSED  ] [m69 tests.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"unit_test" end time: May 22 19:26 BST
+"unit_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 22 19:26 BST

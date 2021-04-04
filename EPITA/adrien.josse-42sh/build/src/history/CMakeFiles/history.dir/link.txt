@@ -1,0 +1,2 @@
+/usr/bin/ar qc libhistory.a  CMakeFiles/history.dir/history.c.o
+/usr/bin/ranlib libhistory.a

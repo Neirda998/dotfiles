@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfree.a  CMakeFiles/free.dir/case_free.c.o CMakeFiles/free.dir/command_free.c.o CMakeFiles/free.dir/compound_list_free.c.o CMakeFiles/free.dir/funcdec_free.c.o CMakeFiles/free.dir/if_free.c.o CMakeFiles/free.dir/loops_free.c.o CMakeFiles/free.dir/parser_input_free.c.o CMakeFiles/free.dir/redirection_free.c.o CMakeFiles/free.dir/simple_command_free.c.o
+/usr/bin/ranlib libfree.a

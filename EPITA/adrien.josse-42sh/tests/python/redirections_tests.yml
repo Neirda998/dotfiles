@@ -1,0 +1,324 @@
+- name: redir_great
+  stdin: echo lol >file; cat file; rm file
+
+- name: redir_less
+  stdin : echo lol >file; cat <file; rm file
+
+- name: redir_dgreat
+  stdin: echo ok echo boomer > file; echo 420sh Blaze it! >>file; cat file; rm file
+
+- name: redir_great_and_simple_after
+  stdin: "cat nofile 2>&1"
+
+- name: redir_great_and_simple_before
+  stdin: "cat nofile 2>&1"
+
+- name: redir_great_and_same
+  stdin: "cat whatever 2>&2"
+
+- name: redir_great_and_swap_in_stderr_before
+  stdin: "echo wtf 1>&2"
+
+- name: redir_great_and_swap_in_stderr_after
+  stdin: "1>&2 echo wtf"
+
+- name: redir_less_and_closed
+  stdin: "echo invalid 1<&40"
+  checks:
+    - has_stderr
+    - returncode
+
+- name: redir_clobber_simple
+  stdin: "echo TUUURBO WALL >| file; cat file; rm file"
+
+- name: redir_no_clobber_no_file
+  stdin: "echo DEJA VU > file; cat file;"
+
+- name: redir_no_clobber_file
+  stdin: "set -o noclobber; echo KANSEI DORIFTO > file; cat file;"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: redir_no_clobber_force
+  stdin: "echo I HAVE BEEN IN THIS PLACE BEFORE >| file; cat file; rm file"
+
+- name: redir_less_great_output
+  stdin: "echo malloc=mmap > file; printf c 1<>file; cat file; rm file"
+
+- name: redir_less_great_input
+  stdin: "echo malloc=mmap > file; cat <>file; rm file"
+
+- name: redir_all
+  stdin: "1>&2 echo lol 2>&1 >file >>file 5>file; rm file"
+
+- name: redir_after_shell_command_if
+  stdin: "if true; then echo lol; fi >& 2"
+
+- name: redir_after_if_double
+  stdin: "if true; then echo lol >&2; fi 2>& 1"
+
+- name: redir_overflow_io_number
+  stdin: "echo lol 1000000000000000>lol; cat lol; rm lol"
+
+- name: redir_heredoc_empty
+  stdin: |
+      cat << here
+      here
+
+- name: redir_heredoc_ambiguous_close
+  stdin: |
+      cat << here
+      doc
+      heredoc
+      her.
+      here
+
+- name: redir_heredoc_commands_after
+  stdin: |
+      cat << here; ls
+      lolelol
+      here
+
+- name: redir_heredoc_commands_inside
+  stdin: |
+      cat << echo
+      boomers
+      ls
+      echo
+
+- name: redir_heredoc_with_no_stdout
+  stdin: |
+      grep oo << EOF
+      sors les kalash comme a marseille
+      EOF
+
+- name: redir_heredoc_with_tabs_no_dash
+  stdin: |
+      grep ll << EOF
+      	sors les kalash comme a marseille
+      EOF
+
+- name: redir_heredoc_with_tabs_long_no_dash
+  stdin: |
+      cat << 270
+      toujours plus haut
+      la republique me suce le tuyau
+      			monsieur l'agent j't'enfonce le triangle
+      (sevran)
+      et le gilet fluo.
+      J'veux faire des sous mais je suis paresseux,
+      			j'aime pas ta gueule; j'te baise ta re-soeu.
+      					Je n'ai confiance qu'en mon desert-eagle
+      		et en Zizou dans les arrets de jeu.
+      Elle est dans la chambre elle est sous les draps
+      			j'ai des jambes a la place des bras
+      elle pense que j'suis en train d'a doigter
+      	j'lui met mon gros doigt d'pieds.
+      ma question preferee
+      			qu'est-ce que je vais faire de tous ces deniers?
+      				Si j'te fend l'crane en deux
+      quel oeil va se fermer le premier ?
+      	Continue a glousser, je te fume, et je roule un 3-feuilles.
+      		Tes ongles continuent a pousser,
+      tu pourras griffer ton cercueil. (2 7)
+      J'ai la prose qui tue et
+      						meme ton corps reconstitue
+      on sait toujours pas qui tu es
+      			ta grand-mere la prostituee.
+      270
+
+- name: redir_heredoc_with_tabs_dash
+  stdin: |
+      grep ll <<- EOF
+      	sors les kalash comme a marseille
+      EOF
+
+- name: redir_heredoc_with_tabs_long_dash
+  stdin: |
+      cat <<- 270
+      toujours plus haut
+      la republique me suce le tuyau
+      			monsieur l'agent j't'enfonce le triangle
+      (sevran)
+      et le gilet fluo.
+      J'veux faire des sous mais je suis paresseux,
+      			j'aime pas ta gueule; j'te baise ta re-soeu.
+      					Je n'ai confiance qu'en mon desert-eagle
+      		et en Zizou dans les arrets de jeu.
+      Elle est dans la chambre elle est sous les draps
+      			j'ai des jambes a la place des bras
+      elle pense que j'suis en train d'a doigter
+      	j'lui met mon gros doigt d'pieds.
+      ma question preferee
+      			qu'est-ce que je vais faire de tous ces deniers?
+      				Si j'te fend l'crane en deux
+      quel oeil va se fermer le premier ?
+      	Continue a glousser, je te fume, et je roule un 3-feuilles.
+      		Tes ongles continuent a pousser,
+      tu pourras griffer ton cercueil. (2 7)
+      J'ai la prose qui tue et
+      						meme ton corps reconstitue
+      on sait toujours pas qui tu es
+      			ta grand-mere la prostituee.
+      270
+
+- name: redir_heredoc_escape_key_backslash_1
+  stdin: |
+      cat << \backslash
+      \backslash
+      backslash
+
+- name: redir_heredoc_escape_key_backslash_2
+  stdin: |
+      cat << backsl\ash
+      \\ba\cks\\lash
+      backslash
+
+- name: redir_heredoc_escape_key_backslash_3
+  stdin: |
+      cat << b\ack\s\la\sh
+      ba\c\ksla\sh
+      \backslash
+      backslash\
+      backslash
+
+- name: redir_heredoc_escape_key_quotes_1
+  stdin: |
+      cat << 'simple_quotes'
+      'simple_quotes'
+      simple_quotes
+
+- name: redir_heredoc_escape_key_quotes_2
+  stdin: |
+      cat << 'simple_qu'otes
+      'simple_quo'tes
+      simple_quotes
+
+- name: redir_heredoc_escape_key_quotes_3
+  stdin: |
+      cat << simple'_q'uotes
+      s'imp'l'e_qu'ot'es
+      simple_quotes
+
+- name: redir_heredoc_escape_key_double_1
+  stdin: |
+      cat << "double_quotes"
+      "double_quotes"
+      double_quotes
+
+- name: redir_heredoc_escape_key_double_2
+  stdin: |
+      cat << doub"le"_quotes
+      doub"le"_quotes
+      double_quotes
+
+- name: redir_heredoc_escape_key_double_3
+  stdin: |
+      cat << do"u"b"le"_qu"ote"s
+      do""""""ub"le"_quotes
+      double_quotes
+
+- name: redir_heredoc_expand_var
+  stdin: |
+      test=expand;
+      cat << eof
+      $test
+      eof
+
+- name: redir_heredoc_no_expand_var
+  stdin: |
+      test=expand;
+      cat << e\of
+      $test
+      eof
+
+- name: redir_heredoc_expand_var_escape_basic
+  stdin: |
+      test=expand;
+      cat << eof
+      \$test
+      eof
+
+- name: redir_heredoc_expand_var_escape_hard
+  stdin: |
+      test=exp\$and;
+      cat << eof
+      $te\$t
+      eof
+
+- name: redir_heredoc_expand_tilde
+  stdin: |
+      cat << here
+      ~ here
+      here
+
+- name: redir_heredoc_expand_lots_of_tildes
+  stdin: |
+      cat << ~
+      ~ ~ ~~ ~~~~ ~ ~ ~~~~~ ~
+      ~~~ ~ ~~~ ~ ~~~~ ~~
+      ~~ ~ ~~~~~ ~ ~ ~ ~~~~ ~
+      ~
+
+# ---------- Empty args redirections ----------
+
+- name: redir_empty_and_if
+  stdin: "&&"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: redir_empty_or_if
+  stdin: "||"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: redir_empty_dsemi
+  stdin: ";;"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: redir_empty_dless
+  stdin: "<<"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: redir_empty_dgreat
+  stdin: ">>"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: redir_empty_less_and
+  stdin: "<&"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: redir_empty_great_and
+  stdin: ">&"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: redir_empty_less_great
+  stdin: "<>"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: redir_empty_dless-dash
+  stdin: "<<-"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: redir_empty_clobber
+  stdin: ">|"
+  checks:
+      - has_stderr
+      - returncode

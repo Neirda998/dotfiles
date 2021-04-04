@@ -1,0 +1,2 @@
+/usr/bin/ar qc libinput.a  CMakeFiles/input.dir/env.c.o CMakeFiles/input.dir/input.c.o CMakeFiles/input.dir/option.c.o CMakeFiles/input.dir/readline.c.o
+/usr/bin/ranlib libinput.a

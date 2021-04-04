@@ -1,0 +1,298 @@
+# ---------- Alias ---------
+
+- name: alias_multiple
+  stdin: alias p='power' t='treasure' k='kernel'
+
+- name: alias_and_unalias
+  stdin: |
+      alias p='power' t='treasure' k='kernel'
+      unalias p t k
+
+- name: alias_and_echo
+  stdin: alias p='This does not exist.'; echo p
+
+- name: alias_sort
+  stdin: |
+      alias l='ls' a='alias' c='cd' e='echo' b='bc'
+      unalias -a
+
+- name: alias_basic
+  stdin: alias ls='ls --color=auto'
+
+- name: alias_empty
+  stdin: alias ls='ls --color=auto'; alias
+
+- name: alias_ls
+  stdin: alias ls='ls --color=auto'; ls
+
+- name: unalias_ls
+  stdin: alias ls='ls --color=auto'; unalias ls
+
+# ---------- Cd ----------
+
+- name: cd_empty
+  stdin: cd
+
+- name: cd_minus
+  stdin: cd /; cd tmp; cd -
+
+- name: cd_variable_path
+  stdin: cd ..
+
+- name: cd_ablsolute_path
+  stdin: cd /bin/bash
+  checks:
+      - has_stderr
+      - returncode
+
+- name: cd_update_old_pwd_var
+  stdin: 'echo $OLDPWD; cd ..; echo $OLDPWD'
+
+# ---------- Echo ----------
+
+- name: echo_empty
+  stdin: echo
+
+- name: echo_multiple_words
+  stdin: echo Cannot The Kingdom of Salvation take me home?
+
+- name: echo_variable
+  stdin: a=42; echo $a is the answer
+
+- name: echo_arithmetic
+  stdin: echo $((21 + 7 * 2)) is the answer
+
+- name: echo_with_num
+  stdin: echo 420
+
+- name: echo_with_char
+  stdin: echo i
+
+- name: echo_semi
+  stdin: echo ;
+
+- name: echo_quotes
+  stdin: echo "Bonjour chers organismes vivants"
+
+- name: echo_path
+  stdin: echo * are my files
+
+- name: echo_reserved_words
+  stdin: echo if then else do done for YEP
+
+- name: echo_n_option
+  stdin: echo -n Yup
+
+- name: echo_multiple_option
+  stdin: echo -nEneenEEeenEne "Does it work?"
+
+# ---------- Exit ----------
+
+- name: exit_empty
+  stdin: exit
+
+- name: exit_0
+  stdin: exit 0
+
+- name: exit_3
+  stdin: exit 3
+
+- name: exit_bad_args
+  stdin: exit myo
+  checks:
+      - has_stderr
+      - returncode
+
+# ---------- Export ----------
+
+- name: export_no_arg
+  stdin: "export"
+  checks:
+      - returncode
+
+- name: export_p_opt
+  stdin: "export -p"
+  checks:
+      - returncode
+
+- name: export_n_opt
+  stdin: "export -n"
+  checks:
+      - returncode
+
+- name: export_var
+  stdin: "export foo=bar"
+  checks:
+      - returncode
+
+- name: export_multiple_var
+  stdin: "export foo=bar toto=tata blazeit=420"
+  checks:
+      - returncode
+
+- name: export_delete_var_print
+  stdin: "export foo=bar; export -n foo; export"
+  checks:
+      - returncode
+
+- name: export_delete_var_full
+  stdin: "export foo=bar; export -n foo=bar; export"
+  checks:
+      - returncode
+
+- name: export_delete_var_multiple
+  stdin: "export foo=bar toto=tata; export -n foo toto; export"
+  checks:
+      - returncode
+
+- name: export_wrong_arg
+  stdin: "export -n \"foo = bar\""
+  checks:
+      - has_stderr
+      - returncode
+
+- name: export_no_stop
+  stdin: "export -n \"foo = bar\" foo=baz"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: export_wrong_arg
+  stdin: "export -w"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: export_multiple_args
+  stdin: "export -n -p"
+  checks:
+      - returncode
+
+- name: export_multiple_args_with_doubles
+  stdin: "export -n -p -n -p -n -n"
+  checks:
+      - returncode
+
+- name: export_multiple_args_single_dash
+  stdin: "export -np"
+  checks:
+      - returncode
+
+- name: export_multiple_args_single_dash_with_doubles
+  stdin: "export -pnpnpnp -npnpnp -npnpnpnpnpnpnpnppn"
+  checks:
+      - returncode
+
+- name: export_multiple_args_with_wrong_arg
+  stdin: "export -pnpnpnw -npnpnp"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: export_multiple_args_var
+  stdin: "export foo=bar; export -pnpnpnppnpn foo"
+  checks:
+      - returncode
+
+- name: export_multiple_args_at_end_line
+  stdin: "export -n foo=bar -p"
+  checks:
+      - has_stderr
+      - returncode
+
+# ---------- Source ----------
+
+- name: source_simple_echo
+  stdin: >-
+      echo 'echo ok boomer' > /tmp/42sh_test.sh;
+      source /tmp/42sh_test.sh;
+      rm /tmp/42sh_test.sh
+
+- name: source_complex_echo
+  stdin: >-
+      echo 'a=b; echo $a' > /tmp/42sh_test.sh;
+      source /tmp/42sh_test.sh;
+      echo $a;
+      rm /tmp/42sh_test.sh
+
+- name: source_dot_simple_echo
+  stdin: >-
+      echo 'echo echo boomer' > /tmp/42sh_test.sh;
+      . /tmp/42sh_test.sh;
+      rm /tmp/42sh_test.sh
+
+- name: source_dot_empty_file
+  stdin: >-
+      echo '' > /tmp/42sh_test.sh;
+      . /tmp/42sh_test.sh;
+      rm /tmp/42sh_test.sh
+
+- name: source_dot_error_file
+  stdin: >-
+      echo 'cat papaoutai' > /tmp/42sh_test.sh;
+      . /tmp/42sh_test.sh;
+      rm /tmp/42sh_test.sh
+
+- name: source_dot_loop_for
+  stdin: >-
+      echo 'for i in tata titi toto tutu;do echo $i; done' > /tmp/42sh_test.sh;
+      . /tmp/42sh_test.sh;
+      rm /tmp/42sh_test.sh
+
+- name: source_dot_argments_file
+  stdin: >-
+      echo 'echo $1; echo $2; echo $3' > /tmp/42sh_test.sh;
+      . /tmp/42sh_test.sh riri fifi loulou;
+      rm /tmp/42sh_test.sh
+
+- name: source_dot_declare_function_use_outside
+  stdin: >-
+      echo 'hello () { echo hello world; }' > /tmp/42sh_test.sh;
+      . /tmp/42sh_test.sh;
+      hello;
+      rm /tmp/42sh_test.sh
+
+- name: source_dot_declare_function_with_arg_and_use_outside_omygod_extra_fun
+  stdin: >-
+      echo 'vendredi() { echo $1 ; echo $2 $2 $2;}' > /tmp/42sh_test.sh;
+      . /tmp/42sh_test.sh;
+      vendredi 'on fete le vendredi' fun;
+      rm /tmp/42sh_test.sh
+
+- name: source_empty_file
+  stdin: >-
+      echo '' > /tmp/42sh_test.sh;
+      source /tmp/42sh_test.sh;
+      rm /tmp/42sh_test.sh
+
+- name: source_error_file
+  stdin: >-
+      echo 'cat papaoutai' > /tmp/42sh_test.sh;
+      source /tmp/42sh_test.sh;
+      rm /tmp/42sh_test.sh
+
+- name: source_loop_for
+  stdin: >-
+      echo 'for i in tata titi toto tutu;do echo $i; done' > /tmp/42sh_test.sh;
+      source /tmp/42sh_test.sh;
+      rm /tmp/42sh_test.sh
+
+- name: source_argments_file
+  stdin: >-
+      echo 'echo $1; echo $2; echo $3' > /tmp/42sh_test.sh;
+      source /tmp/42sh_test.sh riri fifi loulou;
+      rm /tmp/42sh_test.sh
+
+- name: source_declare_function_use_outside
+  stdin: >-
+      echo 'hello () { echo hello world; }' > /tmp/42sh_test.sh;
+      source /tmp/42sh_test.sh;
+      hello;
+      rm /tmp/42sh_test.sh
+
+- name: source_declare_function_with_arg_and_use_outside_omygod_extra_fun
+  stdin: >-
+      echo 'vendredi() { echo $1 ; echo $2 $2 $2;}' > /tmp/42sh_test.sh;
+      source /tmp/42sh_test.sh;
+      vendredi 'on fete le vendredi' fun;
+      rm /tmp/42sh_test.sh

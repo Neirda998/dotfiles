@@ -1,0 +1,86 @@
+- name: pipe_simplest
+  stdin: echo lol | cat
+
+- name: pipe_last
+  stdin: echo lol1 | echo lol2
+
+- name: pipe_last_of_three
+  stdin: echo lol1 | echo lol2 | echo lol3 | echo lol4
+
+- name: pipe_adjacent
+  stdin: echo lol|echo toto|echo oui
+
+- name: pipe_redirect
+  stdin: echo this will be a really long message | cat
+
+- name: pipe_file_not_found
+  stdin: cat klhkehj | echo boomers
+
+- name: pipe_file_not_found
+  stdin: "cat klhkehj | echo boomers | cat uehf | ls | ls | ls"
+  checks:
+    - stdout
+    - has_stderr
+    - returncode
+
+- name: pipe_list_files
+  stdin: ls -la | head -3 | tail -1
+
+- name: pipe_width_grep
+  stdin: echo pants are cool | grep oo
+
+- name: pipe_width_sed
+  stdin: echo shorts are cooler | grep moo | sed s/o/x/
+
+- name: pipe_grep_full_project_but_i_only_want_one_file
+  stdin: tree | grep .c | grep exec | grep redirection | grep bis
+
+- name: pipe_i_dont_want_a_single_word_leak_on_stdout
+  stdin: tree | grep .c | grep exec | grep redirection | grep bis | echo
+
+- name: pipe_with_for
+  stdin: |
+      for i in tata titi toto tutu tintin toutou tehteh
+      do
+      echo shalalalala | cat
+      done | cat
+
+- name: pipe_with_for
+  stdin: |
+      for i in tata titi toto tutu tintin toutou tehteh
+      do
+      echo time is running out | cat | tr 'a-z' 'A-Z'
+      done | wc
+
+- name: pipe_with_file_redir
+  stdin: echo "tout est dans le fichier" > f; cat < f | cat; rm f
+
+- name: pipe_with_file_redir_double
+  stdin: ls . | cat >& 2 | ls /tmp | cat
+
+- name: pipe_with_stderr_redir
+  stdin: echo "do or do not, there is no try" >& 2 | cat <& 2
+
+- name: pipes_alone
+  stdin: '||||||||||'
+  checks:
+      - has_stderr
+      - returncode
+
+- name: pipe_command_fork_bomb
+  stdin: >-
+      echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|
+      echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|
+      echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|
+      echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|
+      echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|
+      echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|
+      echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|
+      echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol|echo lol
+
+- name: pipe_not_found_fork_bomb
+  stdin: >-
+      a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z
+  checks:
+      - has_stderr
+      - returncode

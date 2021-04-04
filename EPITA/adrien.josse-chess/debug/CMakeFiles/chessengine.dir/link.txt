@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Werror -Wextra -pedantic -pthread -g -Og -g3 -fsanitize=address --coverage -fprofile-arcs -ftest-coverage -DDEBUG   CMakeFiles/chessengine.dir/src/main.cc.o  -o chessengine  src/libsrc.a /usr/lib64/libboost_system.so.1.72.0 /usr/lib64/libboost_program_options.so.1.72.0 -ldl 

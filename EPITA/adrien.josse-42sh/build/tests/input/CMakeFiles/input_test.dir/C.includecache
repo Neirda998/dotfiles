@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/input/input.h
+stdio.h
+-
+
+../src/input/readline.h
+
+../src/utils/memory.h
+stddef.h
+-
+
+/home/wall/epita/adrien.josse-42sh/tests/input/readline_test.c
+criterion/criterion.h
+-
+criterion/redirect.h
+-
+stdio.h
+-
+readline/readline.h
+-
+utils/memory.h
+/home/wall/epita/adrien.josse-42sh/tests/input/utils/memory.h
+input/input.h
+/home/wall/epita/adrien.josse-42sh/tests/input/input/input.h
+input/readline.h
+/home/wall/epita/adrien.josse-42sh/tests/input/input/readline.h
+

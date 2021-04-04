@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/wall/epita/adrien.josse-42sh/src/history/history.c
+err.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+readline/history.h
+-
+readline/readline.h
+-
+unistd.h
+-
+history.h
+/home/wall/epita/adrien.josse-42sh/src/history/history.h
+
+/home/wall/epita/adrien.josse-42sh/src/history/history.h
+

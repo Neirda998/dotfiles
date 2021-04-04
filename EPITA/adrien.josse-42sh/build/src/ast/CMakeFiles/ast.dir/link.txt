@@ -1,0 +1,2 @@
+/usr/bin/ar qc libast.a  CMakeFiles/ast.dir/ast_case.c.o CMakeFiles/ast.dir/ast_command.c.o CMakeFiles/ast.dir/ast_compound_list.c.o CMakeFiles/ast.dir/ast_funcdec.c.o CMakeFiles/ast.dir/ast_if.c.o CMakeFiles/ast.dir/ast_input.c.o CMakeFiles/ast.dir/ast_loops.c.o CMakeFiles/ast.dir/ast_redirection.c.o CMakeFiles/ast.dir/ast_utils.c.o
+/usr/bin/ranlib libast.a

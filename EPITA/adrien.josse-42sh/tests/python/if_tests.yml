@@ -1,0 +1,172 @@
+- name: if_simple_true
+  stdin: if true; then true; fi
+
+- name: if_simple_echo
+  stdin: if echo condition; then echo body; fi
+
+- name: if_else_easy
+  stdin: if false; then echo true; else echo false; fi
+
+- name: if_else_hard
+  stdin: if cat no_exists; then echo true; else cat no_exists; fi
+
+- name: if_elif_easy
+  stdin: if false; then echo true; elif true; then tree; fi
+
+- name: if_elif_hard
+  stdin: >-
+    if false;
+    then true;
+    elif false;
+    then false;
+    elif true;
+    then true;
+    elif true;
+    then false;
+    fi;
+
+- name: if_elif_else_newline
+  stdin: |
+      if false
+      then
+      echo true
+      elif false
+      then
+      echo false
+      else
+      echo true
+      fi
+
+- name: if_elif_no_then
+  stdin: |
+      if true
+      then
+      echo Caravan Palace
+      elif false
+      fi
+  checks:
+      - has_stderr
+      - returncode
+
+- name: syntax_error_missing_condition
+  stdin:
+      if; then true; fi
+  checks:
+      - has_stderr
+      - returncode
+
+- name: syntax_error_missing_then
+  stdin:
+      if true; true; fi
+  checks:
+      - has_stderr
+      - returncode
+
+- name: syntax_error_missing_body
+  stdin:
+      if true;then; fi
+  checks:
+      - has_stderr
+      - returncode
+
+- name: syntax_error_missing_else
+  stdin:
+      if true; then true; then true; fi
+  checks:
+      - has_stderr
+      - returncode
+
+- name: syntax_error_missing_else_body
+  stdin:
+      if true; then true; else; fi
+  checks:
+      - has_stderr
+      - returncode
+
+- name: syntax_error_missing_elif_body
+  stdin:
+      if true; then true; elif; fi
+  checks:
+      - has_stderr
+      - returncode
+
+- name: syntax_error_missing_fi
+  stdin:
+      if true; then true;
+  checks:
+      - has_stderr
+      - returncode
+
+- name: syntax_error_unexpected_semi
+  stdin:
+      if true;; fi
+  checks:
+      - has_stderr
+      - returncode
+
+- name: syntax_error_unexpected_operator
+  stdin:
+      if && true;; fi
+  checks:
+      - has_stderr
+      - returncode
+
+- name: if_and_true
+  stdin:
+      if true && true; then echo ok; else echo ko; fi
+
+- name: if_and_false_first
+  stdin:
+      if true && false; then echo ok; else echo ko; fi
+
+- name: if_and_false_second
+  stdin:
+      if false && true; then echo ok; else echo ko; fi
+
+- name: if_or_true
+  stdin:
+      if true || true; then echo ok; else echo ko; fi
+
+- name: if_or_false
+  stdin:
+      if false || false; then echo ok; else echo ko; fi
+
+- name: if_or_first_true
+  stdin:
+      if true || false; then echo ok; else echo ko; fi
+
+- name: if_or_second_true
+  stdin:
+      if false || true; then echo ok; else echo ko; fi
+
+# ---------- Only reserved ----------
+
+- name: if_only_if
+  stdin: "if"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: if_only_then
+  stdin: "then"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: if_only_else
+  stdin: "else"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: if_only_elif
+  stdin: "elif"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: if_only_fi
+  stdin: "fi"
+  checks:
+      - has_stderr
+      - returncode

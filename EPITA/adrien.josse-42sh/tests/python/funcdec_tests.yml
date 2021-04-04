@@ -1,0 +1,183 @@
+- name: funcdec_basic_hello_world_syntax_test_1
+  stdin: >-
+      hello_world() { echo 'hello world!';};
+      hello_world
+
+- name: funcdec_basic_hello_world_syntax_test_2
+  stdin: >-
+      hello_world () { echo 'hello world!';};
+      hello_world
+
+- name: funcdec_basic_hello_world_syntax_test_3
+  stdin: >-
+      hello_world(){ echo 'hello world!';};
+      hello_world
+
+- name: funcdec_basic_hello_world_syntax_test_4
+  stdin: >-
+      hello_world (){ echo 'hello world!';};
+      hello_world
+
+- name: funcdec_syntax_error_1
+  stdin: hello () echo 'yolo';};
+  checks:
+      - has_stderr
+      - returncode
+
+- name: funcdec_syntax_error_2
+  stdin: hello ) { echo 'yolo';};
+  checks:
+      - has_stderr
+      - returncode
+
+- name: funcdec_syntax_error_3
+  stdin: hello ( { echo 'yolo';};
+  checks:
+      - has_stderr
+      - returncode
+
+- name: funcdec_syntax_error_4
+  stdin: hello () {echo 'yolo';};
+  checks:
+      - has_stderr
+      - returncode
+
+- name: funcdec_false
+  stdin: func () { false;}; func;
+
+- name: funcdec_basic_echo_param_1
+  stdin: >-
+      hello() { echo $1;};
+      hello hello world;
+
+- name: funcdec_basic_echo_param_1_2
+  stdin: >-
+      hello() { echo $1 $2;};
+      hello hello world;
+
+- name: funcdec_simple_for
+  stdin: >-
+      for_func() { for i in a b c d e; do echo $i; done; };
+      for_func;
+
+- name: funcdec_simple_for_echo_param_1
+  stdin: >-
+      for_func() { for i in a b c d e; do echo $1 $i; done; };
+      for_func On sort les kalash comme a Marseille;
+
+- name: funcdec_simple_for_echo_param_*
+  stdin: >-
+      for_func() { for i in a b c d e; do echo $* $i; done; };
+      for_func On sort les kalash comme a Marseille;
+
+- name: funcdec_long_for_simple_while_echo_param_*
+  stdin: >-
+      function func_test()
+      {
+          echo $@;
+          for i in 'bouffer de la' 'baiser des'; do
+          echo $i;
+          while true; do
+          echo quiche;
+          break;
+          done;
+          done;
+          echo $*;
+      };
+      func_test Ll Cck Skrz;
+
+- name: funcdec_case_simple_1
+  stdin: 'func() { case i in i) echo i; esac;}; func'
+
+- name: funcdec_case_simple_2
+  stdin: 'func() { case i in c) echo c;; i) echo i;; a) echo a; esac;}; func'
+
+- name: funcdec_case_multiple_patterns_multiple_matches
+  stdin: 'func () { case i in i|t) echo 420;; r) echo r;; i) echo pui;; esac;}; func'
+
+- name: funcdec_case_only_case
+  stdin: 'func () { case }'
+  checks:
+      - has_stderr
+      - returncode
+
+- name: funcdec_while_simple_echo
+  stdin: 'func () { while true; do echo 420 BLAZE IT; break; done; }; func'
+
+- name: funcdec_while_with_vars
+  stdin: 'func ()
+        { a=yeet;
+        echo to $a;
+        while false; do
+        echo waat $a;
+        done;
+        echo or be $aed;
+        };
+        func'
+
+- name: funcdec_while_only
+  stdin: 'func () { while }'
+  checks:
+      - has_stderr
+      - returncode
+
+- name: funcdec_until_simple_echo
+  stdin: 'func () { until false; do echo 420; break; done; }; func'
+
+- name: funcdec_until_with_vars
+  stdin: 'func ()
+        { a=yeet;
+        echo to $a;
+        until true; do
+        echo waat $a;
+        done;
+        echo or be $aed;
+        };
+        func'
+
+- name: funcdec_until_only
+  stdin: 'func () { until }'
+  checks:
+      - has_stderr
+      - returncode
+
+- name: funcdec_simple_if
+  stdin: 'func () { if true; then echo wololo; fi; }; func'
+
+- name: funcdec_simple_if_else
+  stdin: 'func () { if false; then echo wololo; else echo $1; fi; }; func'
+
+- name: funcdec_simple_if_elif_else
+  stdin: 'func () { if true; then echo wololo; elif false; then echo dodo; else echo $1; fi; }; func'
+
+- name: funcdec_only_if
+  stdin: 'func () { if }'
+  checks:
+      - has_stderr
+      - returncode
+
+- name: funcdec_only_else
+  stdin: 'func () { else }'
+  checks:
+      - has_stderr
+      - returncode
+
+# TODO des tests
+
+- name: funcdec_only_elif
+  stdin: 'func () { elif }'
+  checks:
+      - has_stderr
+      - returncode
+
+- name: funcdec_mega_long_echo
+  stdin: 'func () { echo 420; echo BLAZE IT; echo ; echo trololo; }; func'
+
+- name: funcdec_vars
+  stdin: 'func () { a=b; c=d; echo $a $b; }; func'
+
+- name: funcdec_echo_more
+  stdin: 'func () { echo DEJA VU; }; func'
+
+- name: funcdec_echo_even_more
+  stdin: 'func () { echo I have just been in this place before; }; func'

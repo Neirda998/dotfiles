@@ -1,0 +1,545 @@
+# ---------- Tilde expansion ----------
+
+- name: simple_tilde_expand
+  stdin: 'echo ~'
+
+- name: simple_tilde_+_expand
+  stdin: 'echo ~+'
+
+- name: simple_tilde_-_expand
+  stdin: 'echo ~-'
+
+# ---------- Param expansion ----------
+
+- name: simple_param_expand
+  stdin: 'a=i; echo $a'
+
+- name: complex_param_expand
+  stdin: 'Blaze_it=420sh; echo $Blaze_it'
+
+- name: brackets_param_expand
+  stdin: 'speedrun=oob; echo ${speedrun}'
+
+- name: non_existant_param_expand
+  stdin: 'echo $four_o_four'
+
+- name: empty_param_expand
+  stdin: 'void=; echo $void'
+
+- name: concat_param_expand
+  stdin: 'void=Hollow;Templar=Knight; echo ${void}$Templar'
+
+- name: multiple_param_expand
+  stdin: 'always=Still;Living=Alive!; echo ${always}; echo ${Living}'
+
+- name: multiple_param_expand_concat
+  stdin: >-
+      war_engine1=trebuchet;
+      war_engine2=catapult;
+      echo $war_engine1 superior ${war_engine2}
+
+- name: multiple_param_expand_concat_with_semi_at_end
+  stdin: >-
+      war_engine1=trebuchet;
+      war_engine2=catapult;
+      echo $war_engine1 superior ${war_engine2};
+
+- name: multiple_param_expand_one_line
+  stdin: 'en1=treb; en2=cata; echo $en1 sup $en2'
+
+- name: multiple_param_expand_concat_with_semi_at_end_with_space
+  stdin: >-
+      war_engine1=trebuchet;
+      war_engine2=catapult;
+      echo $war_engine1 superior ${war_engine2} ;
+
+- name: double_quoted_param_expand
+  stdin: 'portal="Still alive"; echo "$portal"'
+
+- name: double_quoted_non_existant_param_expand
+  stdin: 'echo "$void"'
+
+- name: quoted_param_non_expand
+  stdin: "echo '$void'"
+
+- name: recursive_param_expand
+  stdin: >-
+      toto=boomer;
+      ok=$toto;
+      echo $ok;
+
+- name: incomplete_recursive_param_expand
+  stdin: >-
+      toto=boomer;
+      ok=toto;
+      echo $ok;
+
+- name : quoted_param_non_expand
+  stdin : "echo '$void'"
+
+- name : only_dollar_char
+  stdin : "echo $"
+
+- name: reset_var
+  stdin: 'a=42; echo $a; a=69; echo $a'
+
+# ---------- Special variables ----------
+# ----- $?
+
+- name: special_vars_simple_$?
+  stdin: 'echo $?'
+
+- name: special_vars_false_$?
+  stdin: '! true; echo $?'
+
+- name: special_vars_false_or_$?
+  stdin: 'false || echo $?'
+
+# ----- $0
+
+- name: special_vars_echo_$0_on_dot_sh
+  stdin: >-
+      echo 'echo $0;' > ./test.sh;
+      chmod u+x ./test.sh;
+      ./test.sh 42 69 420;
+      rm ./test.sh;
+
+- name: special_vars_echo_$0
+  stdin: >-
+      echo 'echo $0;' > ./test;
+      chmod u+x ./test;
+      ./test 42 69 420;
+      rm ./test;
+
+# ----- $n
+
+- name: special_vars_echo_$n_on_dot_sh
+  stdin: >-
+      echo 'echo $1; echo $2; echo $3' > ./test.sh;
+      chmod u+x ./test.sh;
+      ./test.sh 42 69 420;
+      rm ./test.sh;
+
+- name: special_vars_echo_$n
+  stdin: >-
+      echo 'echo $1; echo $2; echo $3' > ./test;
+      chmod u+x ./test;
+      ./test 42 69 420;
+      rm ./test;
+
+- name: special_vars_echo_$n_on_dot_sh_using_source
+  stdin: >-
+      echo 'echo $1; echo $2; echo $3' > ./test.sh;
+      chmod u+x ./test.sh;
+      source ./test.sh 42 69 420;
+      rm ./test.sh;
+
+- name: special_vars_echo_$n_using_source
+  stdin: >-
+      echo 'echo $1; echo $2; echo $3' > ./test;
+      chmod u+x ./test;
+      source ./test 42 69 420;
+      rm ./test;
+
+# ----- $@, $* and $#
+
+- name: special_vars_echo_$@_$*_$#_on_dot_sh
+  stdin: >-
+      echo 'echo $@; echo $*; echo $#;' > ./test.sh;
+      chmod u+x ./test.sh;
+      ./test.sh 42 69 420;
+      rm ./test.sh;
+
+- name: special_vars_echo_$@_$*_$#
+  stdin: >-
+      echo 'echo $@; echo $*;echo $#;' > ./test;
+      chmod u+x ./test;
+      ./test 42 69 420;
+      rm ./test;
+
+# ----- $RANDOM
+
+- name: special_vars_echo_$RANDOM_on_dot_sh
+  stdin: >-
+      echo 'echo $RANDOM;' > ./test.sh;
+      chmod u+x ./test.sh;
+      ./test.sh 42 69 420;
+      rm ./test.sh;
+  checks:
+      - returncode
+
+- name: special_vars_echo_$RANDOM
+  stdin: >-
+      echo 'echo $RANDOM;' > ./test;
+      chmod u+x ./test;
+      ./test 42 69 420;
+      rm ./test;
+  checks:
+      - returncode
+
+# ----- $UID
+
+- name: special_vars_echo_$UID_on_dot_sh
+  stdin: >-
+      echo 'echo $UID;' > ./test.sh;
+      chmod u+x ./test.sh;
+      ./test.sh 42 69 420;
+      rm ./test.sh;
+
+- name: special_vars_echo_$UID
+  stdin: >-
+      echo 'echo $UID;' > ./test;
+      chmod u+x ./test;
+      ./test 42 69 420;
+      rm ./test;
+
+# ----- $OLDPWD
+
+- name: special_vars_echo_$OLDPWD_on_dot_sh
+  stdin: >-
+      echo 'echo $OLDPWD;' > ./test.sh;
+      chmod u+x ./test.sh;
+      ./test.sh 42 69 420;
+      rm ./test.sh;
+
+- name: special_vars_echo_$OLDPWD
+  stdin: >-
+      echo 'echo $OLDPWD;' > ./test;
+      chmod u+x ./test;
+      ./test 42 69 420;
+      rm ./test;
+
+# ----- $IFS
+
+- name: special_vars_echo_$IFS_on_dot_sh
+  stdin: >-
+      echo 'echo $IFS;' > ./test.sh;
+      chmod u+x ./test.sh;
+      ./test.sh 42 69 420;
+      rm ./test.sh;
+
+- name: special_vars_echo_$IFS
+  stdin: >-
+      echo 'echo $IFS;' > ./test;
+      chmod u+x ./test;
+      ./test 42 69 420;
+      rm ./test;
+
+# ---------- Path expansion ----------
+# ----- Keep default check whenever stdout are not similar
+# they may not be in the same order, but same length
+
+# ----- * and [X]
+- name: path_expansion_echo_*
+  stdin: 'echo *'
+  checks:
+      - returncode
+
+- name: path_expansion_echo_*/*
+  stdin: 'echo */*'
+
+- name: path_expansion_echo_/tmp/*
+  stdin: 'echo /tmp/*'
+
+- name: path_expansion_echo_/tmp/*e*
+  stdin: 'echo /tmp/*e*'
+
+- name: path_expansion_echo_/tmp/*[am]*
+  stdin: 'echo /tmp/*[am]*'
+  checks:
+      - returncode
+
+- name: path_expansion_echo_/tmp/*[am]
+  stdin: 'echo /tmp/*[am]'
+  checks:
+      - returncode
+
+- name: path_expansion_echo_/tmp/[ps]*
+  stdin: 'echo /tmp/[ps]*'
+  checks:
+      - returncode
+
+- name: path_expansion_echo_~/.[b]ashrc
+  stdin: 'echo ~/.[b]ashrc'
+
+- name: path_expansion_echo_../*
+  stdin: 'echo ../*'
+
+- name: path_expansion_echo_../*/*
+  stdin: 'echo ../*/*'
+
+- name: path_expansion_echo_../*/../*
+  stdin: 'echo ../*/../*'
+
+- name: path_expansion_echo_/*/*/*
+  stdin: 'echo ../*'
+
+- name: path_expansion_echo_..////////*//*/*///*
+  stdin: 'echo ../*/*'
+
+- name: path_expansion_echo_~/.ba*
+  stdin: 'echo ~/.ba*'
+
+- name: path_expansion_globing_upper_echo_[!MTcmt]*
+  stdin: 'echo [!MTcmt]'
+
+# ----- ?
+
+- name: path_expansion_s?c
+  stdin: 'echo s?c'
+
+- name: path_expansion_s?rc
+  stdin: 'echo s?rc'
+
+- name: path_expansion_/t?p/
+  stdin: 'echo /t?p/'
+
+- name: path_expansion_/t?p/*
+  stdin: 'echo /t?p/*'
+
+# ----- globbing classes [:XX:]
+
+- name: path_expansion_globing_alnum_echo_*[:alnum:]*
+  stdin: 'echo *[:alnum:]*'
+  checks:
+      - returncode
+
+- name: path_expansion_globing_alnum_echo_./*[:alnum:]*
+  stdin: 'echo ./*[:alnum:]*'
+
+- name: path_expansion_globing_alnum_echo_*/*[:alnum:]
+  stdin: 'echo */*[:alnum:]'
+
+- name: path_expansion_globing_alnum_echo_*/*[:alnum:]*
+  stdin: 'echo */*[:alnum:]*'
+
+- name: path_expansion_globing_upper_echo_[[:upper:]]*
+  stdin: 'echo [[:upper:]]*'
+
+
+# ---------- Arithmetic expansion ----------
+
+# Substraction
+
+- name: arithmetic_expansion_sub
+  stdin: 'echo $((2 - 1))'
+
+- name: arithmetic_expansion_sub_under_zero
+  stdin: 'echo $((2 - 4))'
+
+- name: arithmetic_expansion_neg_sub
+  stdin: 'echo $((2 - -2))'
+
+- name: arithmetic_expansion_double_neg_sub
+  stdin: 'echo $((-2 - -2))'
+
+# Addition
+
+- name: arithmetic_expansion_add
+  stdin: 'echo $((2 - 1))'
+
+- name: arithmetic_expansion_neg_add
+  stdin: 'echo $((2 + -2))'
+
+- name: arithmetic_expansion_double_neg_add
+  stdin: 'echo $((-2 + -2))'
+
+# Multiplication
+
+- name: arithmetic_expansion_mult
+  stdin: 'echo $((2 * 67))'
+
+- name: arithmetic_expansion_neg_mult
+  stdin: 'echo $((2 * -2))'
+
+- name: arithmetic_expansion_double_neg_mult
+  stdin: 'echo $((-2 * -2))'
+
+# Division
+
+- name: arithmetic_expansion_div
+  stdin: 'echo $((67 / 2))'
+
+- name: arithmetic_expansion_neg_div
+  stdin: 'echo $((420 / -42))'
+
+- name: arithmetic_expansion_double_neg_div
+  stdin: 'echo $((-69 / -42))'
+
+- name: arithmetic_expansion_div_by_0
+  stdin: 'echo $((-69 / 0))'
+  checks:
+      - has_stderr
+
+# Power
+
+- name: arithmetic_expansion_pow
+  stdin: 'echo $((3 ** 7))'
+
+- name: arithmetic_expansion_neg_pow
+  stdin: 'echo $((-3 ** 2))'
+
+- name: arithmetic_expansion_neg_exp_pow
+  stdin: 'echo $((2 ** -2))'
+  checks:
+      - has_stderr
+
+# Bit_And
+
+- name: arithmetic_expansion_bit_and
+  stdin: 'echo $((2 & 67))'
+
+- name: arithmetic_expansion_neg_bit_and
+  stdin: 'echo $((2 & -2))'
+
+- name: arithmetic_expansion_double_neg_bit_and
+  stdin: 'echo $((-2 & -2))'
+
+# Bit_Or
+
+- name: arithmetic_expansion_bit_or
+  stdin: 'echo $((2 | 67))'
+
+- name: arithmetic_expansion_neg_bit_or
+  stdin: 'echo $((2 | -2))'
+
+- name: arithmetic_expansion_double_neg_bit_or
+  stdin: 'echo $((-2 | -2))'
+
+# Bit_Xor
+
+- name: arithmetic_expansion_bit_xor
+  stdin: 'echo $((2 ^ 67))'
+
+- name: arithmetic_expansion_neg_bit_xor
+  stdin: 'echo $((2 ^ -2))'
+
+- name: arithmetic_expansion_double_neg_bit_xor
+  stdin: 'echo $((-2 ^ -2))'
+
+# AND
+
+- name: arithmetic_expansion_and
+  stdin: 'echo $((2 && 67))'
+
+- name: arithmetic_expansion_neg_and
+  stdin: 'echo $((2 && -2))'
+
+- name: arithmetic_expansion_double_neg_and
+  stdin: 'echo $((-2 && -2))'
+
+# Or
+
+- name: arithmetic_expansion_or
+  stdin: 'echo $((2 || 67))'
+
+- name: arithmetic_expansion_neg_or
+  stdin: 'echo $((2 || -2))'
+
+- name: arithmetic_expansion_double_neg_or
+  stdin: 'echo $((-2 || -2))'
+
+# Not
+
+- name: arithmetic_expansion_not
+  stdin: 'echo $((!2))'
+
+- name: arithmetic_expansion_neg_not
+  stdin: 'echo $((!-2))'
+
+# Bit_Not
+
+- name: arithmetic_expansion_big_not
+  stdin: 'echo $((~67))'
+
+- name: arithmetic_expansion_neg_big_not
+  stdin: 'echo $((~-2))'
+
+# Words
+
+- name: arithmetic_expansion_unset_word
+  stdin: 'echo $((a + 2))'
+
+- name: arithmetic_expansion_empty_word
+  stdin: 'russian=; echo $((russian + 2))'
+
+- name: arithmetic_expansion_alpha_word
+  stdin: 'slav=squat; echo $((slav + 2))'
+
+- name: arithmetic_expansion_alphanum_word
+  stdin: 'edge=xxd4Rk5H4D0Wxx; echo $((edge + 2))'
+
+- name: arithmetic_expansion_num_word
+  stdin: 'am_I_right=69; echo $((am_I_right + 351))'
+
+# Invalid
+
+- name: arithmetic_expansion_missing_const
+  stdin: 'echo $((1 + ))'
+  checks:
+      - has_stderr
+
+- name: arithmetic_expansion_only_double_op
+  stdin: 'echo $((+))'
+  checks:
+      - has_stderr
+
+- name: arithmetic_expansion_only_single_op
+  stdin: 'echo $((!))'
+  checks:
+      - has_stderr
+
+- name: arithmetic_expansion_empty
+  stdin: 'echo $(())'
+  checks:
+      - has_stderr
+
+# ---------- Command substitution ----------
+
+- name: command_substitution_$_simple_echo
+  stdin: 'echo $( echo 420 )'
+
+- name: command_substitution_`_simple_echo
+  stdin: 'echo ` echo 420 `'
+
+- name: command_substitution_$_simple_for_echo
+  stdin: 'echo $( for i in a b c d e; do echo $i; done)'
+
+- name: command_substitution_`_simple_for_echo
+  stdin: 'echo ` for i in a b c d e; do echo $i; done`'
+
+- name: command_substitution_$_while_break
+  stdin: 'echo $( while true; do echo Blaze it; break; done )'
+
+- name: command_substitution_`_while_break
+  stdin: 'echo ` while true; do echo Blaze it; break; done `'
+
+- name: command_substitution_$_vars
+  stdin: 'echo $(a=trebuchet; b=catapult; echo $a is superior to $b)'
+
+- name: command_substitution_`_vars
+  stdin: 'echo `a=trebuchet; b=catapult; echo $a is superior to $b`'
+
+- name: command_substitution_`_simple_function_echo
+  stdin: 'echo `function test () { echo test func; }; test`'
+
+- name: command_substitution_$_syntax_error_1
+  stdin: 'echo $( for i in a b c d e; do echo $i; done'
+  checks:
+      - has_stderr
+      - returncode
+
+- name: command_substitution_`_syntax_error_1
+  stdin: 'echo ` for i in a b c d e; do echo $i; done'
+  checks:
+      - has_stderr
+      - returncode
+
+- name: command_substitution_$_syntax_error_2
+  stdin: 'echo echo toto)'
+  checks:
+      - has_stderr
+        returncode
+
+- name: command_substitution_subshell_in_subshell_`$
+  stdin: echo `echo $(seq 1 10)`

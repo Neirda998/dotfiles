@@ -1,0 +1,101 @@
+- name: command_ls_simple
+  stdin: ls
+
+- name: command_ls_la
+  stdin: ls -la
+
+- name: command_not_true
+  stdin: "! true"
+
+- name: command_not_false
+  stdin: "! false"
+
+- name: command_false
+  stdin: "false"
+
+- name: command_false_and_true_or_false_and_etc
+  stdin: "false && true || false && false || true || false && false && false"
+
+- name: how_to_break_a_server_101
+  stdin: 'echo ../../../../*/*/*/*/../*/../*/../'
+
+- name: command_cat_no_file
+  stdin: "cat 0pp0p0pp0p0pp0p0p0p00p"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: command_cat_no_file_not
+  stdin: "! cat 0pp0p0pp0p0pp0p0p0p00p"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: enigma_cannot
+  stdin: 'echo Cannot'
+
+- name: enigma_the
+  stdin: 'echo the > file; cat file; rm file'
+
+- name: enigma_kingdom
+  stdin: 'echo $(echo Kingdom)'
+
+- name: enigma_of
+  stdin: 'if true; then echo of; fi'
+
+- name: enigma_salvation
+  stdin: 'for i in Salvation; do echo $i; done'
+
+- name: enigma_take_me_home
+  stdin: 'echo take me home ?'
+
+
+# ---------- Only reserved ----------
+
+- name: empty
+  stdin:
+
+- name: reserved_only_in
+  stdin: "in"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: reserved_only_bang
+  stdin: "!"
+
+- name: reserved_only_lbrace
+  stdin: "{"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: reserved_only_rbrace
+  stdin: "}"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: reserved_only_lparenthesis
+  stdin: "("
+  checks:
+      - has_stderr
+      - returncode
+
+- name: reserved_only_rparenthesis
+  stdin: ")"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: reserved_only_semi
+  stdin: ";"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: reserved_only_pipe
+  stdin: "|"
+  checks:
+      - has_stderr
+      - returncode

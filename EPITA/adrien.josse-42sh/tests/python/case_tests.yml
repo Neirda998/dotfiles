@@ -1,0 +1,58 @@
+- name: case_simple
+  stdin: case i in i) echo i; esac
+
+- name: case_long
+  stdin: case i in i) echo i;; b) echo b; esac
+
+- name: case_multiple_matches
+  stdin: case i in i) echo i;; b) echo b;; i) echo toto; esac
+
+- name: case_multiple_patterns
+  stdin: case i in i|j|k) echo ijk; esac
+
+- name: case_multiple_patterns_multiple_matches
+  stdin: case i in b|l|a|z|e|i|t) echo 420;; r) echo r;; i) echo pui;; esac
+
+- name: case_missing_parenthesis
+  stdin: case i in i echo i;; esac
+  checks:
+      - has_stderr
+      - returncode
+
+- name: case_missing_in
+  stdin: case i i) echo i;; esac
+  checks:
+      - has_stderr
+      - returncode
+
+- name: case_missing_iterator
+  stdin: case in i) echo i;; esac
+  checks:
+      - has_stderr
+      - returncode
+
+- name: case_missing_pattern
+  stdin: case i in ;; esac
+  checks:
+      - has_stderr
+      - returncode
+
+- name: case_space_instead_of_pipe
+  stdin: case i in i|j k) echo ijk; esac
+  checks:
+      - has_stderr
+      - returncode
+
+# ---------- Only reserved ----------
+
+- name: case_only_case
+  stdin: "case"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: case_only_esac
+  stdin: "esac"
+  checks:
+      - has_stderr
+      - returncode

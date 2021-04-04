@@ -1,0 +1,52 @@
+                             ___ ___ ___     _
+                            | | |_  |   |___| |_
+                            |_  |  _| | |_ -|   |
+                              |_|___|___|___|_|_|
+
+Welcome to the new shell that is 420sh, our own attempt at the 42sh project.
+
+To compile and launch the project, without having too mach trash files at
+the source, you can to create a build directory at the and then use cmake.
+Proceed as follow:
+
+    mkdir build
+    cd build
+    cmake ..
+    make
+    ./42sh
+
+After the compilation process, you can launch the test suite.
+It consists of a series of unit tests using Criterion.
+As well as a full end-to-end test suite using python.
+
+However, for this test suite to work, you need to activate a virtual
+environment within the project.
+Follow these steps:
+
+    cd tests/python
+    python -m venv env/
+    source env/bin/activate
+    pip install -r requirements.txt
+
+Then, you can launch the test suite inside the directory
+you build the project in, using:
+
+    make check
+
+In case you only want the python test suite, you can use:
+
+    python tests/python/test_suite.py PATH_TO_BINARY
+
+In 420sh, there is an option to print the ast built by the parser and used
+by the exec. You can activate the following option:
+
+    ./42sh --ast-print
+
+To compile the resulting .dot file as an image, use:
+
+    dot -Tpng 420sh.dot -o IMAGE_NAME.png
+
+You can then open the image with your viewer of choice.
+
+--
+Turbo Wall, Holo, Myo, LM.

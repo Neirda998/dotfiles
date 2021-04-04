@@ -1,0 +1,539 @@
+# ---------- While tests ----------
+
+- name: while_simple
+  stdin: while false; do echo foo; done
+
+# check more complex while
+- name: while_syntax_error_no_while
+  stdin: false; do echo foo; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: while_syntax_error_no_condition
+  stdin: while ; do echo foo; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: while_syntax_error_no_do
+  stdin: while false; echo foo; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: while_syntax_error_no_body
+  stdin: while false; do ; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: while_syntax_error_missing_semi
+  stdin: while false do echo foo; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: while_simple_with_break
+  stdin: >-
+      while true;
+      do
+      echo yeet;
+      break;
+      done;
+      echo booted;
+
+- name: while_double_with_double_break
+  stdin: >-
+      while true; do
+      echo lol;
+      while true; do
+      echo yeet;
+      break;
+      done;
+      echo yeeted;
+      break;
+      done
+
+- name: while_double_with_double_break_plus_echo_not_done
+  stdin: >-
+      while true; do
+      echo lol;
+      while true; do
+      echo yeet;
+      break;
+      done;
+      echo yeeted;
+      break;
+      echo dab;
+      done
+
+- name: while_double_with_break_2_plus_echo_not_done
+  stdin: >-
+      while true; do
+      echo lol;
+      while true; do
+      echo yeet;
+      break 2;
+      done;
+      echo yeeted;
+      done
+
+- name: while_double_with_break_69_plus_echo_not_done
+  stdin: >-
+      while true; do
+      echo lol;
+      while true; do
+      echo yeet;
+      break 69;
+      done;
+      echo yeeted;
+      done
+
+- name: while_triple_with_break_420_plus_echo_not_done
+  stdin: >-
+      while true; do
+      echo lol;
+      while true; do
+      echo jotaro;
+      while true; do
+      echo dio;
+      break 420;
+      echo ZAWARUDO;
+      done;
+      echo yeeted;
+      done;
+      echo booted into space;
+      done
+
+- name: while_triple_with_break_3_plus_echo_not_done
+  stdin: >-
+      while true; do
+      echo lol;
+      while true; do
+      echo jotaro;
+      while true; do
+      echo dio;
+      break 3;
+      echo ZAWARUDO;
+      done;
+      echo yeeted;
+      done;
+      echo booted into space;
+      done
+
+# ---------- Until tests ----------
+
+- name: until_simple
+  stdin: until true; do echo foo; done
+
+# check more complex until
+- name: until_syntax_error_no_until
+  stdin: true; do echo foo; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: until_syntax_error_no_condition
+  stdin: until ; do echo foo; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: until_syntax_error_no_do
+  stdin: until true; echo foo; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: until_syntax_error_no_body
+  stdin: until true; do ; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: until_syntax_error_missing_semi
+  stdin: until true do echo foo; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: until_simple_with_break
+  stdin: until false; do echo lol; break; done
+
+- name: until_double_with_double_break
+  stdin: >-
+      until false; do
+      echo lol;
+      until false; do
+      echo yeet;
+      break;
+      done;
+      break;
+      done
+
+- name: until_double_with_double_break_plus_echo_not_done
+  stdin: >-
+      until false; do
+      echo lol;
+      until false; do
+      echo yeet;
+      break;
+      done;
+      break;
+      echo dab;
+      done
+
+- name: until_double_with_break_2_plus_echo_not_done
+  stdin: >-
+      until false; do
+      echo lol;
+      until false; do
+      echo yeet;
+      break 2;
+      done;
+      echo dab;
+      done
+
+- name: until_double_with_break_69_plus_echo_not_done
+  stdin: >-
+      until false; do
+      echo lol;
+      until false; do
+      echo yeet;
+      break 69;
+      done;
+      echo dab;
+      done
+
+- name: until_triple_with_break_420_plus_echo_not_done
+  stdin: >-
+      until false; do
+      echo lol;
+      until false; do
+      echo jotaro;
+      until false; do
+      echo dio;
+      break 420;
+      done;
+      echo ZAWARUDO;
+      done;
+      echo dab;
+      done
+
+- name: until_triple_with_break_3_plus_echo_not_done
+  stdin: >-
+      until false; do
+      echo lol;
+      until false; do
+      echo jotaro;
+      until false; do
+      echo dio;
+      break 3;
+      done;
+      echo ZAWARUDO;
+      done;
+      echo dab;
+      done
+
+# ---------- For tests ----------
+
+- name: for_simple
+  stdin: for i in toto tata titi; do ls; done
+
+- name: for_simple_no_iterated
+  stdin: for i in; do ls; done
+
+- name: for_simple_no_in
+  stdin: for i; do ls; done
+
+- name: for_syntax_error_no_for
+  stdin: i in toto tata titi; do ls; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: for_syntax_error_no_iterator
+  stdin: for in toto tata titi; do ls; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: for_syntax_error_missing_semi
+  stdin: for i in toto tata titi do ls; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: for_syntax_error_missing_do
+  stdin: for i in toto tata titi; ls; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: for_syntax_error_missing_body
+  stdin: for i in toto tata titi; do; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: for_simple_with_break
+  stdin: for i in toto tata titi; do ls; break; done
+
+- name: for_double_with_double_break
+  stdin: >-
+      for i in toto tata titi; do
+      echo wololoh;
+      for i in wee waa wuu; do
+      echo WAAAAA;
+      break;
+      echo yeet;
+      done;
+      break;
+      done
+
+- name: for_double_with_double_break_plus_echo_not_done
+  stdin: >-
+      for i in toto tata titi; do
+      echo wololoh;
+      for i in wee waa wuu; do
+      echo WAAAAA;
+      break;
+      echo yeet;
+      done;
+      break;
+      echo dab;
+      done
+
+- name: for_double_with_break_2_plus_echo_not_done
+  stdin: >-
+      for i in toto tata titi; do
+      echo wololoh;
+      for i in wee waa wuu; do
+      echo WAAAAA;
+      break 2;
+      echo yeet;
+      done;
+      echo dab;
+      done
+
+- name: for_triple_with_break_break_69_some_echo_done_not_done
+  stdin: >-
+      for i in toto tata titi; do
+      for j in wee waa woo; do
+      for k in baa bee buu; do
+      echo WAAAA;
+      break;
+      echo booted into space;
+      done;
+      echo DIO;
+      break 69;
+      echo ZAWARUDO;
+      done;
+      echo yeee;
+      done
+
+- name: for_double_complex_break
+  stdin: >-
+      for i in toto tata titi; do
+      echo i;
+      for j in wee waa woo; do
+      echo j;
+      break;
+      done;
+      echo bklbkl;
+      done
+
+- name: for_simple_with_break_not_num
+  stdin: >-
+      for i in toto tata titi; do
+      ls;
+      break bruh;
+      done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: for_double_complex_continue
+  stdin: >-
+      for i in toto tata titi; do
+      echo i;
+      for j in wee waa woo; do
+      echo j;
+      continue;
+      echo yeet;
+      done;
+      echo bklbkl;
+      done
+
+- name: for_double_complex_double_continues
+  stdin: >-
+      for i in toto tata titi; do
+      echo i;
+      for j in wee waa woo; do
+      echo j;
+      continue;
+      echo yeet;
+      done;
+      continue;
+      echo bklbkl;
+      done
+
+- name: for_double_complex_continue_2
+  stdin: >-
+      for i in toto tata titi; do
+      echo i;
+      for j in wee waa woo; do
+      echo j;
+      continue 2;
+      echo yeet;
+      done;
+      echo bklbkl;
+      done
+
+- name: for_triple_with_continue_continue_2_some_echo_done_not_done
+  stdin: >-
+      for i in toto tata titi; do
+      for j in wee waa woo; do
+      for k in baa bee buu; do
+      echo WAAAA; continue;
+      echo booted into space;
+      done;
+      echo DIO;
+      continue 2;
+      echo ZAWARUDO;
+      done;
+      echo yeee;
+      done
+
+- name: for_triple_with_continue_continue_69_some_echo_done_not_done
+  stdin: >-
+      for i in toto tata titi; do
+      for j in wee waa woo; do
+      for k in baa bee buu; do
+      echo WAAAA;
+      continue;
+      echo booted into space;
+      done;
+      echo DIO;
+      continue 69;
+      echo ZAWARUDO;
+      done;
+      echo yeee;
+      done
+
+- name: for_epic_bruh_moment
+  stdin: >-
+      for i in toto tata titi; do
+      ls;
+      continue bruh;
+      done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: for_weird_news
+  stdin: for i in e e e; do continue er; done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: for_with_vars
+  stdin: >-
+      for i in a b c d e f g h; do
+      echo $i;
+      i='kalash';
+      echo $i;
+      done
+
+- name: for_using_var_single
+  stdin: >-
+      blz_it='Blaze it';
+      for i in $blz_it; do
+      echo $i;
+      i='kalash';
+      echo $i;
+      done
+
+- name: for_val_of_vars_in_iterator
+  stdin: >-
+      i='blaze it';
+      for $i in waad weed wood; do
+      echo $i;
+      done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: for_iterator_with_$_middle_iterator
+  stdin: >-
+      i='blaze it';
+      for i$i in waad weed wood; do
+      echo $i;
+      done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: for_iterator_with_escaped_$_middle_iterator
+  stdin: >-
+      i='blaze it';
+      for stuff\$i in waad weed wood; do
+      echo $i;
+      done
+  checks:
+      - has_stderr
+      - returncode
+
+- name: for_using_var_in_iterator
+  stdin: >-
+      i='blaze it';
+      for i in waad weed wood; do
+      echo $i;
+      done;
+      echo $i;
+
+- name: for_mega_mix_in_iterated
+  stdin: >-
+      toto='blaze it motha focka';
+      for i in $toto x gon 'give it to ya'; do
+      echo $i;
+      done
+
+- name: for_path_files
+  stdin: for i in *; do echo $i is a file; done
+
+- name: for_path_files_absolute
+  stdin: for i in /*; do echo $i is a file; done
+
+# ---------- Only reserved ----------
+
+- name: loops_only_do
+  stdin: "do"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: loops_only_done
+  stdin: "done"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: loops_only_while
+  stdin: "while"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: loops_only_until
+  stdin: "until"
+  checks:
+      - has_stderr
+      - returncode
+
+- name: loops_only_for
+  stdin: "for"
+  checks:
+      - has_stderr
+      - returncode

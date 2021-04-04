@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblexer.a  CMakeFiles/lexer.dir/split.c.o CMakeFiles/lexer.dir/token.c.o CMakeFiles/lexer.dir/lexer.c.o CMakeFiles/lexer.dir/quote_len.c.o
+/usr/bin/ranlib liblexer.a

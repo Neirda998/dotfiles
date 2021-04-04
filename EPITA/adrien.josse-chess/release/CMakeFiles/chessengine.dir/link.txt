@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Werror -Wextra -pedantic -pthread -O3 -DNDEBUG -O3   CMakeFiles/chessengine.dir/src/main.cc.o  -o chessengine  src/libsrc.a /usr/lib64/libboost_system.a /usr/lib64/libboost_program_options.a -ldl 
